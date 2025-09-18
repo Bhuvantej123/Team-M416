@@ -5,7 +5,6 @@ from groq import Groq
 import uuid
 import json
 import re
-import markdown
 
 main = Blueprint("main", __name__)
 
@@ -214,27 +213,5 @@ def flashcards():
 
 @main.route("/qa")
 def qa():
+    
     return render_template("qa.html")
-
-
-@main.route("/qa/ask", methods=["POST"])
-def qa_ask():
-    question = request.json.get("question", "")
-    if not question.strip():
-        return {"answer": "⚠️ Please ask a valid question."}, 400
-
-    client = Groq(api_key=GROQ_API_KEY)
-    completion = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
-        messages=[{"role": "user", "content": question}],
-    )
-
-    # Raw model response (Markdown text)
-    answer = completion.choices[0].message.content.strip()
-
-    # ✅ Convert Markdown -> HTML
-    answer_html = markdown.markdown(
-        answer, extensions=["fenced_code", "tables"]
-    )
-
-    return {"answer": answer_html}

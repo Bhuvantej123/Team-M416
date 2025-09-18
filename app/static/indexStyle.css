@@ -7,8 +7,8 @@
 }
 
 body {
-  background: #f9fbff;
-  color: #333;
+  background: #121212;
+  color: #e0e0e0;
   line-height: 1.6;
   scroll-behavior: smooth;
 }
@@ -19,8 +19,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -30,11 +30,11 @@ body {
 .logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1a4ed8;
+  color: #4dabf7;
 }
 
 .logo span {
-  color: #3b82f6;
+  color: #82cfff;
 }
 
 .nav-links {
@@ -45,7 +45,7 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
+  color: #e0e0e0;
   font-weight: 500;
   position: relative;
   transition: 0.3s;
@@ -58,7 +58,7 @@ body {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background: #2563eb;
+  background: #4dabf7;
   transition: width 0.3s;
 }
 
@@ -69,7 +69,7 @@ body {
 
 .nav-links a.active,
 .nav-links a:hover {
-  color: #2563eb;
+  color: #4dabf7;
 }
 
 /* Hero Section */
@@ -95,12 +95,12 @@ body {
 }
 
 .hero-content h1 span {
-  color: #2563eb;
+  color: #4dabf7;
 }
 
 .hero-content p {
   margin-bottom: 1.8rem;
-  color: #555;
+  color: #bbb;
   font-size: 1.1rem;
 }
 
@@ -109,7 +109,7 @@ button {
   font-size: 1rem;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #4dabf7, #2563eb);
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -118,7 +118,7 @@ button {
 
 button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 20px rgba(77, 171, 247, 0.5);
 }
 
 .hero-image {
@@ -132,14 +132,14 @@ button:hover {
   max-width: 450px;
   width: 100%;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
 /* Features */
 .features-grid-section {
   text-align: center;
   padding: 80px 20px;
-  background: #f9fcff;
+  background: #1a1a1a;
 }
 
 .features-grid-section h2 {
@@ -149,7 +149,7 @@ button:hover {
 }
 
 .features-grid-section p {
-  color: #555;
+  color: #bbb;
   margin-bottom: 50px;
   font-size: 1.05rem;
 }
@@ -166,26 +166,26 @@ button:hover {
 .feature-card-link {
   text-decoration: none;
   color: inherit;
-  display: flex;      /* make link flex so child can stretch */
+  display: flex; 
 }
 
 /* Make card fill full height */
 .feature-card {
-  background: white;
+  background: #2c2c2c;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 100%;       /* important for equal height */
+  height: 100%; 
 }
 
 .feature-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
 }
 
 .feature-card img {
@@ -197,10 +197,11 @@ button:hover {
   font-size: 1.3rem;
   margin-bottom: 12px;
   font-weight: 700;
+  color: #fff;
 }
 
 .feature-card p {
-  color: #666;
+  color: #ccc;
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -209,17 +210,18 @@ button:hover {
 .cta {
   text-align: center;
   padding: 80px 20px;
-  background: linear-gradient(135deg, #eaf2ff, #eef5ff);
+  background: linear-gradient(135deg, #1a1a1a, #252525);
 }
 
 .cta h2 {
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 15px;
+  color: #fff;
 }
 
 .cta p {
-  color: #555;
+  color: #bbb;
   margin-bottom: 25px;
   font-size: 1.05rem;
 }
@@ -227,7 +229,7 @@ button:hover {
 .cta-btn {
   display: inline-block;
   padding: 14px 30px;
-  background: linear-gradient(135deg, #007bff, #0056b3);
+  background: linear-gradient(135deg, #4dabf7, #2563eb);
   color: white;
   border-radius: 8px;
   font-weight: 600;
@@ -238,7 +240,7 @@ button:hover {
 
 .cta-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 91, 179, 0.3);
+  box-shadow: 0 8px 20px rgba(77, 171, 247, 0.5);
 }
 
 /* Responsive */
@@ -283,9 +285,11 @@ button:hover {
   display: block;
   margin-bottom: 15px;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #444;
   border-radius: 6px;
   font-size: 0.95rem;
+  background: #1e1e1e;
+  color: #e0e0e0;
   cursor: pointer;
 }
 
@@ -298,10 +302,10 @@ button:hover {
 }
 
 .summary-box {
-  background: #fff;
+  background: #2c2c2c;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.7);
   text-align: left;
   line-height: 1.6;
   margin-bottom: 20px;
@@ -313,13 +317,13 @@ button:hover {
 }
 
 .feature-link:hover {
-  color: #2563eb;
+  color: #4dabf7;
 }
 
 .summary-content {
   font-size: 1rem;
   line-height: 1.6;
-  color: #222;
+  color: #e0e0e0;
 }
 
 .summary-content ul {
@@ -329,7 +333,7 @@ button:hover {
 
 .summary-content strong {
   font-weight: 600;
-  color: #000;
+  color: #fff;
 }
 
 /* ================= Upload Notification ================= */
@@ -346,18 +350,18 @@ button:hover {
 
 /* Success style */
 #upload-notification.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: #1f4620;
+    color: #d4edda;
+    border: 1px solid #3c763d;
     opacity: 1;
     transform: translateY(0);
 }
 
 /* Error style */
 #upload-notification.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: #4b1c1c;
+    color: #f8d7da;
+    border: 1px solid #721c24;
     opacity: 1;
     transform: translateY(0);
 }
@@ -371,3 +375,4 @@ button:hover {
 .fade-out {
     animation: fadeOut 3s forwards;
 }
+

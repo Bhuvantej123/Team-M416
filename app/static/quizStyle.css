@@ -1,13 +1,13 @@
-/* ================= Quiz Container ================= */
+/* ================= Dark Theme Quiz Container ================= */
 .quiz-container {
     max-width: 850px;
     margin: 60px auto;
     padding: 40px 35px;
-    background: rgba(255, 255, 255, 0.85); /* subtle glass look */
+    background: rgba(30, 30, 30, 0.85); /* dark glass look */
     backdrop-filter: blur(8px);
     border-radius: 18px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(224, 231, 255, 0.6);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(75, 85, 99, 0.6);
     animation: fadeIn 0.8s ease forwards;
     opacity: 0;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -15,7 +15,7 @@
 
 .quiz-container:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85);
 }
 
 /* Fade-in animation */
@@ -27,7 +27,7 @@
 .question p {
     font-size: 1.1rem;
     margin-bottom: 12px;
-    color: #1f2937; /* dark gray */
+    color: #e0e0e0; /* light gray */
 }
 
 /* Options */
@@ -35,35 +35,36 @@
     display: block;
     margin: 8px 0;
     padding: 10px 14px;
-    border: 1px solid #d1d5db;
+    border: 1px solid #374151; /* dark gray border */
     border-radius: 8px;
     cursor: pointer;
-    background: #f9fafb;
+    background: #1f1f1f; /* dark background */
+    color: #e0e0e0;
     transition: background 0.25s, border-color 0.25s, transform 0.2s;
 }
 
 .options label:hover {
-    background: #eff6ff; /* light blue hover */
+    background: #2563eb20; /* subtle blue overlay on hover */
     border-color: #3b82f6;
     transform: scale(1.02);
 }
 
 .options input[type="radio"] {
     margin-right: 8px;
-    accent-color: #2563eb; /* blue radio buttons */
+    accent-color: #60a5fa; /* blue radio buttons */
 }
 
 /* Correct/Wrong feedback */
 label.correct {
-    background: #dcfce7 !important;
-    color: #065f46;
+    background: #064e3b !important; /* dark green */
+    color: #bbf7d0;
     border-color: #16a34a;
     font-weight: 600;
 }
 
 label.wrong {
-    background: #fee2e2 !important;
-    color: #991b1b;
+    background: #7f1d1d !important; /* dark red */
+    color: #fecaca;
     border-color: #ef4444;
     text-decoration: line-through;
 }
@@ -73,12 +74,12 @@ label.wrong {
     margin-top: 25px;
     padding: 18px;
     border-radius: 10px;
-    background: #f3f4f6;
+    background: #1f1f1f; /* dark background */
     font-size: 1.15rem;
     font-weight: 600;
-    color: #1f2937;
+    color: #e0e0e0;
     text-align: center;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
 }
 
 /* Buttons */
@@ -86,7 +87,7 @@ label.wrong {
 #submitBtn {
     display: inline-block;
     padding: 12px 30px;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
     color: #fff;
     border-radius: 10px;
     font-weight: 600;
@@ -101,7 +102,7 @@ label.wrong {
 .cta-btn:hover,
 #submitBtn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 8px 22px rgba(59, 130, 246, 0.6);
 }
 
 /* Responsive */
@@ -123,14 +124,11 @@ label.wrong {
     }
 }
 
-
 /* Navigation buttons wrapper */
 .navig-btns {
     display: flex;
-    justify-content: center;  /* center horizontally */
-    gap: 20px;                /* space between buttons */
+    justify-content: center;
+    gap: 20px;
     margin-top: 35px;
-    flex-wrap: wrap;          /* wrap on smaller screens */
-    
+    flex-wrap: wrap;
 }
-

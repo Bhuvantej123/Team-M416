@@ -1,3 +1,4 @@
+/* ================= Dark Theme Flashcards ================= */
 .flashcards-container {
     max-width: 900px;
     margin: 50px auto;
@@ -39,7 +40,7 @@
     height: 100%;
     backface-visibility: hidden;
     border-radius: inherit;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,17 +52,14 @@
 
 /* Front Side */
 .card-front {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #fff;
+    background: linear-gradient(135deg, #2563eb, #3b82f6); /* darker blue gradient */
+    color: #e0e0e0;
 }
 
 /* Back Side */
 .card-back {
-    background: #fff;
-    color: #333;
+    background: #1f1f1f; /* dark background */
+    color: #e0e0e0;
     transform: rotateY(180deg);
-    border: 2px solid #e5e7eb;
+    border: 2px solid #374151; /* dark border */
 }
-
-
-
