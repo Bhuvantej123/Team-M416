@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ai Research Copilot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}">
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Research Co-Pilot</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='indexStyle.css')}}" />
 </head>
 <body>
-    <h1>Welcome to Ai Research Copilot</h1>
-</body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>AI Research <span>Co-Pilot</span> for Students</h1>
+      <p>
+        Upload any textbook or lecture notes and instantly get AI-powered
+        summaries, quizzes, flashcards, and Q&amp;A support. Transform your study
+        experience with intelligent learning assistance.
+      </p>
+      <button id="uploadBtn">📂 Upload PDF &amp; Get Started</button>
+    </div>
+    <div class="hero-image">
+      <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/meeting-2029306_1280.png" alt="Students collaborating" />
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Powerful AI Features</h2>
+    <p>
+      Experience the future of studying with our comprehensive AI-powered toolkit.
+    </p>
+  </section>
+
+  <script src="{{url_for('static',filename='indexScripts.js')}}"></script>
+</body>
 </html>
