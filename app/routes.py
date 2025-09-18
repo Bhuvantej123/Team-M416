@@ -152,5 +152,52 @@ def quiz():
 
 @main.route("/flashcards")
 def flashcards():
-    
-    return render_template("flashcards.html")
+    text_id = session.get("pdf_text_file")
+    if not text_id:
+        flash("No uploaded file found.", "error")
+        return redirect(url_for("main.home"))
+
+    text_path = os.path.join(TEXT_FOLDER, text_id)
+    if not os.path.exists(text_path):
+        flash("Uploaded file text not found.", "error")
+        return redirect(url_for("main.home"))
+
+    with open(text_path, "r", encoding="utf-8") as f:
+        pdf_text = f.read()
+
+    flashcards_data = []
+    if pdf_text.strip():
+        client = Groq(api_key=GROQ_API_KEY)
+        prompt = (
+            "Generate 10 flashcards from the following study material. "
+            "Each flashcard must have a 'front' (term/question) and 'back' (answer/explanation). "
+            "Respond ONLY with valid JSON, nothing else. Do not include ``` or explanations.\n\n"
+            "Format:\n"
+            "{ \"flashcards\": [ { \"front\": \"...\", \"back\": \"...\" } ] }\n\n"
+            f"{pdf_text[:4000]}"
+        )
+        try:
+            completion = client.chat.completions.create(
+                model="llama-3.1-8b-instant",
+                messages=[{"role": "user", "content": prompt}],
+            )
+            raw_flashcards = completion.choices[0].message.content.strip()
+
+            # Clean ```json fences
+            if raw_flashcards.startswith("```"):
+                raw_flashcards = raw_flashcards.split("```")[1]
+            if raw_flashcards.startswith("json"):
+                raw_flashcards = raw_flashcards[len("json"):].strip()
+
+            flashcards_data = json.loads(raw_flashcards).get("flashcards", [])
+        except Exception as e:
+            print("Flashcard generation failed:", e)
+            flashcards_data = []
+
+    if not flashcards_data:
+        flashcards_data = [
+            {"front": "⚠️ Flashcards not generated", "back": "Try uploading a different PDF or retry."}
+        ]
+
+    return render_template("flashcards.html", flashcards=flashcards_data)
+
