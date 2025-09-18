@@ -23,3 +23,17 @@
         margin: 40px 15px;          /* Reduce top/bottom spacing */
     }
 }
+
+label.correct {
+    background: #e6ffea;
+    color: #065f46;
+    padding: 4px;
+    border-radius: 4px;
+}
+label.wrong {
+    background: #ffecec;
+    color: #7f1d1d;
+    padding: 4px;
+    border-radius: 4px;
+    text-decoration: line-through;
+}

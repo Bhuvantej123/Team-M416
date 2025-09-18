@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash,current_app
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, current_app
 import os
 import fitz  # PyMuPDF
 from groq import Groq
 import uuid
 import json
+import re
 
 main = Blueprint("main", __name__)
 
@@ -12,9 +13,9 @@ TEXT_FOLDER = "processed"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(TEXT_FOLDER, exist_ok=True)
 
+# ⚠️ Better to use environment variable instead of hardcoding
 GROQ_API_KEY = "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"
 
-import re
 
 def format_numbered_list(text):
     """
@@ -29,8 +30,6 @@ def format_numbered_list(text):
         html_list += f"  <li>{item}</li>\n"
     html_list += "</ol>"
     return html_list
-
-
 
 
 @main.route("/")
@@ -87,15 +86,15 @@ def summary():
             model="llama-3.1-8b-instant",
             messages=[{
                 "role": "user",
-                "content": f"Summarize the following content into clean, well-formatted bullet points.Do not use Markdown symbols like * or **.Return output as plain text with numbered or dashed bullets only.\n\n{pdf_text[:4000]}"
+                "content": f"Summarize the following content into clean, well-formatted bullet points."
+                           f"Do not use Markdown symbols like * or **."
+                           f"Return output as plain text with numbered or dashed bullets only.\n\n{pdf_text[:4000]}"
             }],
         )
         raw_summary = completion.choices[0].message.content
-        summary = format_numbered_list(raw_summary)     # 👈 add this line
-
+        summary = format_numbered_list(raw_summary)
 
     return render_template("summary.html", summary=summary)
-
 
 
 @main.route("/quiz")
@@ -140,14 +139,25 @@ def quiz():
             raw_quiz = raw_quiz[len("json"):].strip()
 
         quiz_data = json.loads(raw_quiz)
+
+        # ✅ Step 1 Fix: Normalize options & answers
+        for q in quiz_data.get("questions", []):
+            # ensure options are strings
+            q["options"] = [str(o).strip() for o in q.get("options", [])]
+
+            # normalize answer to uppercase letter (A, B, C, D)
+            ans = q.get("answer", "")
+            if isinstance(ans, str):
+                m = re.search(r'([A-Za-z])', ans)
+                q["answer"] = m.group(1).upper() if m else ans.strip().upper()
+            else:
+                q["answer"] = str(ans).strip().upper()
+
     except Exception as e:
         print("Quiz generation failed:", e)
         quiz_data = {"questions": []}
 
     return render_template("quiz.html", quiz=quiz_data)
-
-
-
 
 
 @main.route("/flashcards")
@@ -200,4 +210,3 @@ def flashcards():
         ]
 
     return render_template("flashcards.html", flashcards=flashcards_data)
-

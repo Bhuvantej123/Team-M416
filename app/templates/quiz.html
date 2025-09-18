@@ -21,27 +21,30 @@
         </nav>
     </header>
 
-
-    <div class="quiz-container">
+    <!-- ✅ Store total number of questions in data-total -->
+    <div class="quiz-container" id="quizContainer" data-total="{{ quiz.questions|length if quiz and quiz.questions else 0 }}">
         <h1>Quiz</h1>
 
         {% if quiz.questions %}
-        <form id="quizForm">
+        <form id="quizForm" onsubmit="return false;">
             {% for q in quiz.questions %}
+            {% set q_index = loop.index %}
             <div class="question">
-                <p><strong>{{ loop.index }}. {{ q.question }}</strong></p>
+                <p><strong>{{ q_index }}. {{ q.question }}</strong></p>
                 <div class="options">
                     {% for opt in q.options %}
                     <label>
-                        <input type="radio" name="q{{ loop.index }}" value="{{ opt[0] }}">
+                        <!-- ✅ value is just the first letter (A/B/C/D) -->
+                        <input type="radio" name="q{{ q_index }}" value="{{ opt[0] | upper }}">
                         {{ opt }}
                     </label><br>
                     {% endfor %}
                 </div>
-                <input type="hidden" name="answer{{ loop.index }}" value="{{ q.answer }}">
+                <!-- ✅ hidden correct answer uses ID so static JS can read it -->
+                <input type="hidden" id="answer{{ q_index }}" value="{{ q.answer | upper }}">
             </div>
             {% endfor %}
-            <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+            <button type="button" id="submitBtn">Submit Quiz</button>
         </form>
         <div id="result"></div>
         {% else %}
@@ -49,13 +52,17 @@
         {% endif %}
     </div>
 
-
+    <!-- Navigation buttons -->
     <a href="{{ url_for('main.home') }}" class="cta-btn">⬅ Back to Home</a>
     <a href="{{ url_for('main.summary') }}" class="cta-btn"> Back to Summary</a>
     <a href="{{ url_for('main.flashcards') }}" class="cta-btn">See Flashcards ➡</a>
 
+    <!-- Scripts -->
     <script src="{{ url_for('static', filename='quizScripts.js') }}"></script>
-
+    <script>
+        // ✅ attach event listener so static JS works
+        document.getElementById('submitBtn').addEventListener('click', checkAnswers);
+    </script>
 </body>
 
 </html>
