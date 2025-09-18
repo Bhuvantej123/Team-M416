@@ -1,48 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Research Co-Pilot</title>
-  <link rel="stylesheet" href="{{url_for('static',filename='indexStyle.css')}}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Research Co-Pilot</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='indexStyle.css')}}" />
 </head>
+
 <body>
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
-      <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>AI Research <span>Co-Pilot</span> for Students</h1>
-      <p>
-        Upload any textbook or lecture notes and instantly get AI-powered
-        summaries, quizzes, flashcards, and Q&amp;A support. Transform your study
-        experience with intelligent learning assistance.
-      </p>
-      <button id="uploadBtn">📂 Upload PDF &amp; Get Started</button>
-    </div>
-    <div class="hero-image">
-      <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/meeting-2029306_1280.png" alt="Students collaborating" />
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI Research <span>Co-Pilot</span> for Students</h1>
+            <p>
+                Upload any textbook or lecture notes and instantly get AI-powered
+                summaries, quizzes, flashcards, and Q&amp;A support. Transform your study
+                experience with intelligent learning assistance.
+            </p>
+            <button id="uploadBtn">📂 Upload PDF &amp; Get Started</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://images-ext-1.discordapp.net/external/0IXhjJGprwUah-WhUCuZJeE9ob9QRDbJFUVTYVhwnns/https/preview--paper-to-prep.lovable.app/assets/hero-education-DiX8AfJS.jpg"
+                alt="Students collaborating" />
+        </div>
+    </section>
 
-  <!-- Features Section -->
-  <section class="features">
-    <h2>Powerful AI Features</h2>
-    <p>
-      Experience the future of studying with our comprehensive AI-powered toolkit.
-    </p>
-  </section>
 
-  <script src="{{url_for('static',filename='indexScripts.js')}}"></script>
+
+
+    <!-- Features Grid Section -->
+    <section class="features-grid-section">
+        <h2>Powerful AI Features</h2>
+        <p>Experience the future of studying with our comprehensive AI-powered toolkit</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="https://img.icons8.com/fluency/48/document.png" alt="AI Summaries" />
+                <h3>AI Summaries</h3>
+                <p>Get instant, comprehensive summaries of your textbooks and lecture notes</p>
+            </div>
+
+            <div class="feature-card">
+                <img src="https://img.icons8.com/fluency/48/brain.png" alt="Smart Quizzes" />
+                <h3>Smart Quizzes</h3>
+                <p>Generate custom quizzes to test your understanding of any topic</p>
+            </div>
+
+            <div class="feature-card">
+                <img src="https://img.icons8.com/fluency/48/book.png" alt="Flashcards" />
+                <h3>Flashcards</h3>
+                <p>Create interactive flashcards for efficient studying and memorization</p>
+            </div>
+
+            <div class="feature-card">
+                <img src="https://img.icons8.com/fluency/48/help.png" alt="Q&A Support" />
+                <h3>Q&amp;A Support</h3>
+                <p>Ask questions and get detailed answers about your study material</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready to Supercharge Your Studies?</h2>
+        <p>Join thousands of students who are already learning smarter, not harder</p>
+        <a href="{{ url_for('main.upload') }}" class="cta-btn">Get Started Now</a>
+    </section>
+
+
+    <script src="{{url_for('static',filename='indexScripts.js')}}"></script>
 </body>
+
 </html>
