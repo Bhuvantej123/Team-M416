@@ -94,3 +94,42 @@ def summary():
 
 
     return render_template("summary.html", summary=summary)
+
+@main.route("/quiz")
+def quiz():
+    text_id = session.get("pdf_text_file")
+    if not text_id:
+        flash("No uploaded file found. Upload a PDF first.", "error")
+        return redirect(url_for("main.home"))
+
+    text_path = os.path.join("processed", text_id)
+    if not os.path.exists(text_path):
+        flash("Processed text missing. Upload again.", "error")
+        return redirect(url_for("main.home"))
+
+    with open(text_path, "r", encoding="utf-8") as f:
+        pdf_text = f.read()
+
+    if not pdf_text.strip():
+        flash("No text to generate quiz from.", "error")
+        return redirect(url_for("main.home"))
+
+    # --- Ask LLM to generate quiz questions ---
+    client = Groq(api_key=GROQ_API_KEY)
+    prompt = (
+        "Create 10 multiple-choice quiz questions from the following study material. "
+        "Each question should have 4 options (A, B, C, D) and mark the correct answer clearly. "
+        "Format output in plain text:\n\n"
+        f"{pdf_text[:5000]}"  # limit to avoid token overflow
+    )
+
+    try:
+        completion = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+        )
+        quiz_text = completion.choices[0].message.content
+    except Exception:
+        quiz_text = "Quiz generation failed. Please check logs or API key."
+
+    return render_template("quiz.html", quiz=quiz_text)
