@@ -15,7 +15,8 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(TEXT_FOLDER, exist_ok=True)
 
 # ⚠️ Better to use environment variable instead of hardcoding
-GROQ_API_KEY = "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"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
 
 
 def format_numbered_list(text):
