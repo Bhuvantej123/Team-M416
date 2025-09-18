@@ -13,6 +13,24 @@ os.makedirs(TEXT_FOLDER, exist_ok=True)
 
 GROQ_API_KEY = "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"
 
+import re
+
+def format_numbered_list(text):
+    """
+    Convert text like '1. First 2. Second' into HTML list
+    """
+    items = re.split(r'\s*\d+\.\s*', text)  # split at 1. 2. 3.
+    items = [i.strip() for i in items if i.strip()]
+    if not items:
+        return text  # fallback if no numbering found
+    html_list = "<ol>\n"
+    for item in items:
+        html_list += f"  <li>{item}</li>\n"
+    html_list += "</ol>"
+    return html_list
+
+
+
 
 @main.route("/")
 def home():
@@ -71,6 +89,8 @@ def summary():
                 "content": f"Summarize the following content into clean, well-formatted bullet points.Do not use Markdown symbols like * or **.Return output as plain text with numbered or dashed bullets only.\n\n{pdf_text[:4000]}"
             }],
         )
-        summary = completion.choices[0].message.content
+        raw_summary = completion.choices[0].message.content
+        summary = format_numbered_list(raw_summary)     # 👈 add this line
+
 
     return render_template("summary.html", summary=summary)
