@@ -145,3 +145,12 @@ def quiz():
         quiz_data = {"questions": []}
 
     return render_template("quiz.html", quiz=quiz_data)
+
+
+
+
+
+@main.route("/flashcards")
+def flashcards():
+    
+    return render_template("flashcards.html")

@@ -1,0 +1,25 @@
+/* ================= Quiz Container ================= */
+.quiz-container {
+    max-width: 800px;               /* Limit width for readability */
+    margin: 60px auto;              /* Center horizontally with top/bottom spacing */
+    padding: 40px 30px;             /* Inner spacing */
+    background: #ffffff;            /* White background */
+    border-radius: 15px;            /* Rounded corners */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);  /* Soft shadow for depth */
+    border: 1px solid #e0e7ff;     /* Subtle border for clean separation */
+    animation: fadeIn 0.8s ease forwards;  /* Smooth fade-in */
+    opacity: 0;                     /* Initially hidden, fades in */
+}
+
+/* Fade-in animation for container */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Optional: make container responsive */
+@media (max-width: 768px) {
+    .quiz-container {
+        padding: 30px 20px;         /* Reduce padding on smaller screens */
+        margin: 40px 15px;          /* Reduce top/bottom spacing */
+    }
+}

@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Quiz</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='quizStyle.css') }}">
 </head>
+
 <body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
     <div class="quiz-container">
         <h1>Quiz</h1>
 
@@ -33,24 +49,8 @@
         {% endif %}
     </div>
 
-    <script>
-function checkAnswers() {
-    let total = parseInt("{{ quiz.questions|length or 0 }}");
-    let score = 0;
-
-    for (let i = 1; i <= total; i++) {
-        let selected = document.querySelector('input[name="q' + i + '"]:checked');
-        let correct = document.querySelector('input[name="answer' + i + '"]').value;
-
-        if (selected && selected.value === correct) {
-            score++;
-        }
-    }
-
-    document.getElementById("result").innerText =
-        "You scored " + score + " out of " + total;
-}
-</script>
+    <script src="{{ url_for('static', filename='quizScripts.js') }}"></script>
 
 </body>
+
 </html>
