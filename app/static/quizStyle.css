@@ -1,39 +1,136 @@
 /* ================= Quiz Container ================= */
 .quiz-container {
-    max-width: 800px;               /* Limit width for readability */
-    margin: 60px auto;              /* Center horizontally with top/bottom spacing */
-    padding: 40px 30px;             /* Inner spacing */
-    background: #ffffff;            /* White background */
-    border-radius: 15px;            /* Rounded corners */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);  /* Soft shadow for depth */
-    border: 1px solid #e0e7ff;     /* Subtle border for clean separation */
-    animation: fadeIn 0.8s ease forwards;  /* Smooth fade-in */
-    opacity: 0;                     /* Initially hidden, fades in */
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 40px 35px;
+    background: rgba(255, 255, 255, 0.85); /* subtle glass look */
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(224, 231, 255, 0.6);
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Fade-in animation for container */
+.quiz-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Fade-in animation */
 @keyframes fadeIn {
     to { opacity: 1; }
 }
 
-/* Optional: make container responsive */
+/* Question text */
+.question p {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #1f2937; /* dark gray */
+}
+
+/* Options */
+.options label {
+    display: block;
+    margin: 8px 0;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #f9fafb;
+    transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+
+.options label:hover {
+    background: #eff6ff; /* light blue hover */
+    border-color: #3b82f6;
+    transform: scale(1.02);
+}
+
+.options input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #2563eb; /* blue radio buttons */
+}
+
+/* Correct/Wrong feedback */
+label.correct {
+    background: #dcfce7 !important;
+    color: #065f46;
+    border-color: #16a34a;
+    font-weight: 600;
+}
+
+label.wrong {
+    background: #fee2e2 !important;
+    color: #991b1b;
+    border-color: #ef4444;
+    text-decoration: line-through;
+}
+
+/* Result section */
+#result {
+    margin-top: 25px;
+    padding: 18px;
+    border-radius: 10px;
+    background: #f3f4f6;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: center;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Buttons */
+.cta-btn,
+#submitBtn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.cta-btn:hover,
+#submitBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .quiz-container {
-        padding: 30px 20px;         /* Reduce padding on smaller screens */
-        margin: 40px 15px;          /* Reduce top/bottom spacing */
+        padding: 25px 20px;
+        margin: 30px 15px;
+    }
+
+    .question p {
+        font-size: 1rem;
+    }
+
+    .cta-btn,
+    #submitBtn {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
     }
 }
 
-label.correct {
-    background: #e6ffea;
-    color: #065f46;
-    padding: 4px;
-    border-radius: 4px;
+
+/* Navigation buttons wrapper */
+.navig-btns {
+    display: flex;
+    justify-content: center;  /* center horizontally */
+    gap: 20px;                /* space between buttons */
+    margin-top: 35px;
+    flex-wrap: wrap;          /* wrap on smaller screens */
+    
 }
-label.wrong {
-    background: #ffecec;
-    color: #7f1d1d;
-    padding: 4px;
-    border-radius: 4px;
-    text-decoration: line-through;
-}
+

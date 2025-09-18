@@ -22,7 +22,8 @@
     </header>
 
     <!-- ✅ Store total number of questions in data-total -->
-    <div class="quiz-container" id="quizContainer" data-total="{{ quiz.questions|length if quiz and quiz.questions else 0 }}">
+    <div class="quiz-container" id="quizContainer"
+        data-total="{{ quiz.questions|length if quiz and quiz.questions else 0 }}">
         <h1>Quiz</h1>
 
         {% if quiz.questions %}
@@ -53,9 +54,12 @@
     </div>
 
     <!-- Navigation buttons -->
-    <a href="{{ url_for('main.home') }}" class="cta-btn">⬅ Back to Home</a>
-    <a href="{{ url_for('main.summary') }}" class="cta-btn"> Back to Summary</a>
-    <a href="{{ url_for('main.flashcards') }}" class="cta-btn">See Flashcards ➡</a>
+    <div class="navig-btns">
+
+        <a href="{{ url_for('main.home') }}" class="cta-btn">⬅ Back to Home</a>
+        <a href="{{ url_for('main.summary') }}" class="cta-btn"> Back to Summary</a>
+        <a href="{{ url_for('main.flashcards') }}" class="cta-btn">See Flashcards ➡</a>
+    </div>
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='quizScripts.js') }}"></script>

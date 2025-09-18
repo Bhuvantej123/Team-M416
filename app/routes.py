@@ -210,3 +210,8 @@ def flashcards():
         ]
 
     return render_template("flashcards.html", flashcards=flashcards_data)
+
+@main.route("/qa")
+def qa():
+    
+    return render_template("qa.html")
