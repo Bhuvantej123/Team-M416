@@ -326,3 +326,18 @@ button:hover {
     display: block; /* make it block so the entire div is clickable */
 }
 
+.summary-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #222;
+}
+
+.summary-content ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.summary-content strong {
+    font-weight: 600;
+    color: #000;
+}

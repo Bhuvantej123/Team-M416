@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>PDF Summary</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}">
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -24,9 +26,13 @@
     <section class="summary-section">
         <h2>📄 AI Summary</h2>
         <div class="summary-box">
-            <p>{{ summary }}</p>
+            <div class="summary-content">
+                {{ summary|safe }}
+            </div>
+
         </div>
         <a href="{{ url_for('main.home') }}" class="cta-btn">⬅ Back to Home</a>
     </section>
 </body>
+
 </html>
