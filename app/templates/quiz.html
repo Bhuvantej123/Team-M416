@@ -1,16 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Quiz</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Research Co-Pilot</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='indexStyle.css')}}" />
 </head>
+
 <body>
-    <div class="container">
-        <h1>Quiz Based on Your PDF</h1>
-        <div class="quiz-content">
-            <pre>{{ quiz }}</pre>
-        </div>
-        <a href="{{ url_for('main.home') }}" class="btn">Back to Home</a>
-    </div>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('main.home') }}" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    
+
+
+    <script src="{{url_for('static',filename='indexScripts.js')}}"></script>
+
 </body>
+
 </html>
