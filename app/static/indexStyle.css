@@ -265,3 +265,13 @@ button:hover {
     font-size: 1.6rem;
   }
 }
+
+.hero-content input[type="file"] {
+  display: block;
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
