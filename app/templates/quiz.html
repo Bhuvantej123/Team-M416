@@ -1,49 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Research Co-Pilot</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='indexStyle.css')}}" />
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}">
 </head>
-
 <body>
-    <!-- Navbar -->
-    <header>
-        <nav class="navbar">
-            <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('main.home') }}" class="active">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="quiz-container">
+        <h1>Quiz</h1>
 
+        {% if quiz.questions %}
+        <form id="quizForm">
+            {% for q in quiz.questions %}
+            <div class="question">
+                <p><strong>{{ loop.index }}. {{ q.question }}</strong></p>
+                <div class="options">
+                    {% for opt in q.options %}
+                    <label>
+                        <input type="radio" name="q{{ loop.index }}" value="{{ opt[0] }}">
+                        {{ opt }}
+                    </label><br>
+                    {% endfor %}
+                </div>
+                <input type="hidden" name="answer{{ loop.index }}" value="{{ q.answer }}">
+            </div>
+            {% endfor %}
+            <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+        </form>
+        <div id="result"></div>
+        {% else %}
+        <p>No quiz could be generated. Try uploading another PDF.</p>
+        {% endif %}
+    </div>
 
-    
+    <script>
+function checkAnswers() {
+    let total = parseInt("{{ quiz.questions|length or 0 }}");
+    let score = 0;
 
+    for (let i = 1; i <= total; i++) {
+        let selected = document.querySelector('input[name="q' + i + '"]:checked');
+        let correct = document.querySelector('input[name="answer' + i + '"]').value;
 
+        if (selected && selected.value === correct) {
+            score++;
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-    
-
-
-    
-
-
-    <script src="{{url_for('static',filename='indexScripts.js')}}"></script>
+    document.getElementById("result").innerText =
+        "You scored " + score + " out of " + total;
+}
+</script>
 
 </body>
-
 </html>

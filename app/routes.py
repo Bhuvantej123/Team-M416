@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash,current_app
 import os
 import fitz  # PyMuPDF
 from groq import Groq
 import uuid
+import json
 
 main = Blueprint("main", __name__)
 
@@ -95,32 +96,34 @@ def summary():
 
     return render_template("summary.html", summary=summary)
 
+
+
 @main.route("/quiz")
 def quiz():
     text_id = session.get("pdf_text_file")
     if not text_id:
-        flash("No uploaded file found. Upload a PDF first.", "error")
+        flash("No uploaded file found.", "error")
         return redirect(url_for("main.home"))
 
-    text_path = os.path.join("processed", text_id)
+    text_path = os.path.join(TEXT_FOLDER, text_id)
     if not os.path.exists(text_path):
-        flash("Processed text missing. Upload again.", "error")
+        flash("Uploaded file text not found.", "error")
         return redirect(url_for("main.home"))
 
     with open(text_path, "r", encoding="utf-8") as f:
         pdf_text = f.read()
 
-    if not pdf_text.strip():
-        flash("No text to generate quiz from.", "error")
-        return redirect(url_for("main.home"))
-
-    # --- Ask LLM to generate quiz questions ---
     client = Groq(api_key=GROQ_API_KEY)
     prompt = (
-        "Create 10 multiple-choice quiz questions from the following study material. "
-        "Each question should have 4 options (A, B, C, D) and mark the correct answer clearly. "
-        "Format output in plain text:\n\n"
-        f"{pdf_text[:5000]}"  # limit to avoid token overflow
+        "Generate 10 multiple-choice quiz questions based ONLY on the text below. "
+        "Respond with STRICT JSON, nothing else. Do not include ``` or explanations.\n\n"
+        "Format:\n"
+        "{\n"
+        "  \"questions\": [\n"
+        "    { \"question\": \"...\", \"options\": [\"A) ...\",\"B) ...\",\"C) ...\",\"D) ...\"], \"answer\": \"A\" }\n"
+        "  ]\n"
+        "}\n\n"
+        f"{pdf_text[:4000]}"
     )
 
     try:
@@ -128,8 +131,17 @@ def quiz():
             model="llama-3.1-8b-instant",
             messages=[{"role": "user", "content": prompt}],
         )
-        quiz_text = completion.choices[0].message.content
-    except Exception:
-        quiz_text = "Quiz generation failed. Please check logs or API key."
+        raw_quiz = completion.choices[0].message.content.strip()
 
-    return render_template("quiz.html", quiz=quiz_text)
+        # Sometimes AI wraps in code fences, strip them
+        if raw_quiz.startswith("```"):
+            raw_quiz = raw_quiz.split("```")[1]
+        if raw_quiz.startswith("json"):
+            raw_quiz = raw_quiz[len("json"):].strip()
+
+        quiz_data = json.loads(raw_quiz)
+    except Exception as e:
+        print("Quiz generation failed:", e)
+        quiz_data = {"questions": []}
+
+    return render_template("quiz.html", quiz=quiz_data)
