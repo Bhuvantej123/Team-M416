@@ -63,7 +63,7 @@ def upload():
     session["pdf_text_file"] = text_id
     flash("File uploaded successfully!", "success")
 
-    return redirect(url_for("main.summary"))
+    return redirect(url_for("main.home"))
 
 
 @main.route("/summary")
