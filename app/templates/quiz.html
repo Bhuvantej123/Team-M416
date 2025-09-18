@@ -14,7 +14,7 @@
         <nav class="navbar">
             <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
             <ul class="nav-links">
-                <li><a href="#" class="active">Home</a></li>
+                <li><a href="{{ url_for('main.home') }}" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
@@ -48,6 +48,11 @@
         <p>No quiz could be generated. Try uploading another PDF.</p>
         {% endif %}
     </div>
+
+
+    <a href="{{ url_for('main.home') }}" class="cta-btn">⬅ Back to Home</a>
+    <a href="{{ url_for('main.summary') }}" class="cta-btn"> Back to Summary</a>
+    <a href="{{ url_for('main.flashcards') }}" class="cta-btn">See Flashcards ➡</a>
 
     <script src="{{ url_for('static', filename='quizScripts.js') }}"></script>
 
