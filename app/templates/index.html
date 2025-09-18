@@ -54,11 +54,14 @@
 
         <div class="features-grid">
             <!-- AI Summaries Card -->
-            <div class="feature-card">
-                <img src="https://img.icons8.com/fluency/48/document.png" alt="AI Summaries" />
-                <h3><a class="feature-link" href="{{ url_for('main.summary') }}">AI Summaries</a></h3>
-                <p>Get instant, comprehensive summaries of your textbooks and lecture notes</p>
-            </div>
+            <a href="{{ url_for('main.summary') }}" class="feature-card-link">
+                <div class="feature-card">
+                    <img src="https://img.icons8.com/fluency/48/document.png" alt="AI Summaries" />
+                    <h3>AI Summaries</h3>
+                    <p>Get instant, comprehensive summaries of your textbooks and lecture notes</p>
+                </div>
+            </a>
+
 
             <!-- Other features stay same -->
             <div class="feature-card">

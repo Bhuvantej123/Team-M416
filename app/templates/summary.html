@@ -6,11 +6,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}">
 </head>
 <body>
+
+    <!-- Navbar -->
     <header>
         <nav class="navbar">
             <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('main.home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('main.about') }}">About</a></li>
+                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+            </ul>
         </nav>
     </header>
+
+
 
     <section class="summary-section">
         <h2>📄 AI Summary</h2>

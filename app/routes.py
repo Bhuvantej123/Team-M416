@@ -16,6 +16,8 @@ GROQ_API_KEY = "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"
 def home():
     return render_template("index.html")
 
+
+
 @main.route("/upload", methods=["POST"])
 def upload():
     file = request.files.get("pdf_file")

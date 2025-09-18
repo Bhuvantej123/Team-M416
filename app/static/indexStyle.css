@@ -319,3 +319,10 @@ button:hover {
   line-height: 1.6;
   margin-bottom: 20px;
 }
+
+.feature-card-link {
+    text-decoration: none; /* remove underline */
+    color: inherit; /* inherit text color */
+    display: block; /* make it block so the entire div is clickable */
+}
+
