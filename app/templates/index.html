@@ -21,8 +21,6 @@
         </nav>
     </header>
 
-
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -36,6 +34,8 @@
             <form action="{{ url_for('main.upload') }}" method="POST" enctype="multipart/form-data">
                 <input type="file" id="pdfUpload" name="pdf_file" accept="application/pdf" required>
                 <button type="submit">📂 Upload PDF &amp; Get Started</button>
+                <!-- Notification placeholder -->
+                <div id="upload-notification"></div>
             </form>
 
         </div>
@@ -45,7 +45,6 @@
                 alt="Students collaborating" />
         </div>
     </section>
-
 
     <!-- Features Grid Section -->
     <section class="features-grid-section">
@@ -62,23 +61,23 @@
                 </div>
             </a>
 
-
-            <!-- Other features stay same -->
-             
+            <!-- Smart Quizzes Card -->
             <a href="{{ url_for('main.quiz') }}" class="feature-card-link">
-            <div class="feature-card">
-                <img src="https://img.icons8.com/fluency/48/brain.png" alt="Smart Quizzes" />
-                <h3>Smart Quizzes</h3>
-                <p>Generate custom quizzes to test your understanding of any topic</p>
-            </div>
+                <div class="feature-card">
+                    <img src="https://img.icons8.com/fluency/48/brain.png" alt="Smart Quizzes" />
+                    <h3>Smart Quizzes</h3>
+                    <p>Generate custom quizzes to test your understanding of any topic</p>
+                </div>
             </a>
 
+            <!-- Flashcards Card -->
             <div class="feature-card">
                 <img src="https://img.icons8.com/fluency/48/book.png" alt="Flashcards" />
                 <h3>Flashcards</h3>
                 <p>Create interactive flashcards for efficient studying and memorization</p>
             </div>
 
+            <!-- Q&A Support Card -->
             <div class="feature-card">
                 <img src="https://img.icons8.com/fluency/48/help.png" alt="Q&A Support" />
                 <h3>Q&amp;A Support</h3>
@@ -93,7 +92,6 @@
         <p>Join thousands of students who are already learning smarter, not harder</p>
         <a href="{{ url_for('main.upload') }}" class="cta-btn">Get Started Now</a>
     </section>
-
 
     <script src="{{url_for('static',filename='indexScripts.js')}}"></script>
 

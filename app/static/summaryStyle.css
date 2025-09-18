@@ -1,0 +1,139 @@
+/* ================= Summary Page CSS ================= */
+
+/* Body & general text */
+body {
+    background: #f9fbff;
+    color: #333;
+    font-family: "Segoe UI", "Poppins", sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a4ed8;
+}
+
+.logo span {
+    color: #3b82f6;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+/* Summary Section */
+.summary-section {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 30px 20px;
+    text-align: center;
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.summary-section h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: #2563eb;
+}
+
+.summary-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    overflow-wrap: break-word;
+}
+
+.summary-content {
+    font-size: 1rem;
+    color: #222;
+}
+
+.summary-content ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.summary-content ol {
+    margin-left: 20px;
+    list-style-type: decimal;
+}
+
+.summary-content strong {
+    font-weight: 600;
+    color: #000;
+}
+
+/* Back button */
+.cta-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .summary-section {
+        padding: 20px 15px;
+    }
+
+    .summary-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .cta-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+}
