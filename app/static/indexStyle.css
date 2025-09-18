@@ -277,3 +277,45 @@ button:hover {
 }
 
 
+.summary-section {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.summary-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  text-align: left;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.feature-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.feature-link:hover {
+  color: #2563eb;
+}
+
+.summary-section {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.summary-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  text-align: left;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}

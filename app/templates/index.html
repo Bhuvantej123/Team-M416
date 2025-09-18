@@ -29,15 +29,15 @@
             <h1>AI Research <span>Co-Pilot</span> for Students</h1>
             <p>
                 Upload any textbook or lecture notes and instantly get AI-powered
-                summaries, quizzes, flashcards, and Q&amp;A support. Transform your study
-                experience with intelligent learning assistance.
+                summaries, quizzes, flashcards, and Q&amp;A support.
             </p>
 
-            <!-- File upload input -->
-            <input type="file" id="pdfUpload" name="pdf_file" accept="application/pdf">
+            <!-- Upload form -->
+            <form action="{{ url_for('main.upload') }}" method="POST" enctype="multipart/form-data">
+                <input type="file" id="pdfUpload" name="pdf_file" accept="application/pdf" required>
+                <button type="submit">📂 Upload PDF &amp; Get Started</button>
+            </form>
 
-            <!-- Original button stays -->
-            <button id="uploadBtn">📂 Upload PDF &amp; Get Started</button>
         </div>
 
         <div class="hero-image">
@@ -47,20 +47,20 @@
     </section>
 
 
-
-
     <!-- Features Grid Section -->
     <section class="features-grid-section">
         <h2>Powerful AI Features</h2>
         <p>Experience the future of studying with our comprehensive AI-powered toolkit</p>
 
         <div class="features-grid">
+            <!-- AI Summaries Card -->
             <div class="feature-card">
                 <img src="https://img.icons8.com/fluency/48/document.png" alt="AI Summaries" />
-                <h3>AI Summaries</h3>
+                <h3><a class="feature-link" href="{{ url_for('main.summary') }}">AI Summaries</a></h3>
                 <p>Get instant, comprehensive summaries of your textbooks and lecture notes</p>
             </div>
 
+            <!-- Other features stay same -->
             <div class="feature-card">
                 <img src="https://img.icons8.com/fluency/48/brain.png" alt="Smart Quizzes" />
                 <h3>Smart Quizzes</h3>
