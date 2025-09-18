@@ -1,11 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Chatbot Q&A</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='indexStyle.css') }}">
+  <style>
+    body {
+      background: #f4f6f9;
+      font-family: Arial, sans-serif;
+    }
+
+    .chat-container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+    }
+
+    .chat-header {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-align: center;
+      color: #333;
+    }
+
+    .chat-box {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .msg {
+      max-width: 75%;
+      margin: 8px 0;
+      padding: 10px 14px;
+      border-radius: 16px;
+      line-height: 1.4;
+      white-space: pre-wrap; /* ✅ Keeps line breaks */
+    }
+
+    .user {
+      background: #007bff;
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+
+    .bot {
+      background: #e9ecef;
+      color: #222;
+      margin-right: auto;
+      border-bottom-left-radius: 4px;
+    }
+
+    .chat-input {
+      display: flex;
+      margin-top: 15px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+    }
+
+    .chat-input button {
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .chat-input button:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    qa
+  <header>
+    <nav class="navbar">
+      <div class="logo">🎓 AI Research <span>Co-Pilot</span></div>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('main.quiz') }}">Quiz</a></li>
+        <li><a href="{{ url_for('main.summary') }}">Summary</a></li>
+        <li><a href="{{ url_for('main.flashcards') }}">Flashcards</a></li>
+        <li><a href="{{ url_for('main.qa') }}" class="active">Chatbot</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="chat-container">
+    <div class="chat-header">💬 Ask Anything!</div>
+    <div id="chatBox" class="chat-box"></div>
+
+    <div class="chat-input">
+      <input type="text" id="questionInput" placeholder="Type your question...">
+      <button onclick="askQuestion()">Ask</button>
+    </div>
+  </div>
+
+  <script>
+    async function askQuestion() {
+      const input = document.getElementById("questionInput");
+      const chatBox = document.getElementById("chatBox");
+      const question = input.value.trim();
+      if (!question) return;
+
+      // Add user message
+      chatBox.innerHTML += `<div class="msg user">${question}</div>`;
+      input.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Call backend
+      const res = await fetch("{{ url_for('main.qa_ask') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question })
+      });
+
+      const data = await res.json();
+      const answer = data.answer.replace(/\n/g, "<br>"); // ✅ Preserve line breaks
+
+      // Add bot reply
+      chatBox.innerHTML += `<div class="msg bot">${answer}</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
 </body>
 </html>
